@@ -1,7 +1,10 @@
+.gitignore
 .ENV.yaml
 kfwx.jpg
 Sample.py
 __init__.py
+.idea/
+.idea/*
 
 
 *.pyc

@@ -1,5 +1,7 @@
 .ENV.yaml
+kfwx.jpg
 Sample.py
+__init__.py
 
 
 *.pyc

@@ -1,0 +1,15 @@
+version: "3.2"
+services:
+  wxKFServer:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    image: wxkf:latest
+    ports:
+      - "8888:8888"
+    command: python /app/WeixinServer.py
+    restart: always
+  wxKFAgent:
+    image: wxkf:latest
+    restart: always
+    command: python /app/WxUtil.py

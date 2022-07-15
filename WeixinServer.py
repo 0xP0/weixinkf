@@ -20,12 +20,12 @@ class MainHandler(tornado.web.RequestHandler):
         sha1 = SHA1()
         ret, signature = sha1.getSHA1(Token, data.get('timestamp', ''), data.get('nonce', ''), data.get('echostr', ''))
         if ret == 0 and data.get('msg_signature','') == signature:
-            print "PASS:" ,data['echostr']
+            print ("PASS:" ,data['echostr'])
             pc = Prpcrypt(base64.b64decode(EncodingAESKey + "="))
             ret, xml_content = pc.decrypt(data['echostr'], AppId)
             self.write(xml_content)
         else:
-            print "NO AUTH"
+            print ("NO AUTH")
             self.write("NO AUTH")
 
     def post(self, *args, **kwargs):
@@ -34,12 +34,9 @@ class MainHandler(tornado.web.RequestHandler):
             data[key] = self.get_argument(key)
         wxXBizMsgCrypt = WXBizMsgCrypt(Token,EncodingAESKey,AppId)
         ret,xml_content = wxXBizMsgCrypt.DecryptMsg(self.request.body,data.get('msg_signature',''),data.get('timestamp',''),data.get('nonce',''))
-        print data
-        print xml_content
         if ret == 0:
             xmlParse = XMLParse()
             ret, token = xmlParse.extractByKey(xml_content, "Token")
-            print ret, token
             if ret == 0 and token!=None and len(token)> 1:
                 RedisPool.getConn().set(RedisPool.WXKFTKOKEN,token,600)
         # self.write("")
@@ -58,7 +55,7 @@ if __name__ == "__main__":
     Token = wxUtil.config.weixinkf.token
     AppId = wxUtil.config.weixinkf.appid
 
-    print "AppId:" + AppId
+    print ("AppId:" + AppId)
 
     app = make_app()
     app.listen(8888)

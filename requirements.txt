@@ -1,0 +1,6 @@
+requests
+redis
+PyYAML
+requests_toolbelt
+pycrypto
+tornado

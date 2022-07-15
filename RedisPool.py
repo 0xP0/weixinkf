@@ -1,11 +1,15 @@
 import redis
 import json
 from Config import getConfig
-import os
 class RedisPool:
     instance = None
     WXKFTKOKEN = "weixinkfToken"
     WXKFNEXTCURSOR = "weixinkfNextCursor"
+    WXKFACTOKEN = "weixinKfAccessToken"
+    WXKFMEDIAID = "weixinKfMediaId"
+    WXKFKEEPONEHOUR = "weixinMsginterval:"
+    HASNEWMESSAGE = "weixinHasNewMessage"
+    MESSAGE = "weixinMessage"
     def __init__(self):
         config = getConfig()
         self.pool = redis.ConnectionPool(host=config.redis.host, password=config.redis.passwd,

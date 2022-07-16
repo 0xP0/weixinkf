@@ -12,4 +12,4 @@ services:
   wxKFAgent:
     image: wxkf:latest
     restart: always
-    command: python /app/WxUtil.py
+    command: python /app/WeixinKFAgent.py

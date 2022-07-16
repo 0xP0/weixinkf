@@ -20,9 +20,15 @@ redis:
   db: 8
 ```
 
+### 手动启动
+
 ```bash
 # 监听服务 负责更新 token
 nohup python WeixinServer.py &
 # 工具类 & 消息处理  欢迎消息、自动回复
 nohup python WxUtil.py &
+```
+### 容器启动
+```bash
+docker-compose up -d
 ```

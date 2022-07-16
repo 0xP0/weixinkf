@@ -29,4 +29,13 @@ def toStr(obj):
 
 if __name__ == '__main__':
     redisConn = RedisPool.getConn()
-    redisConn.set('aaa', 'vvv', 10)
+    redisConn.set('stringaaa', 'vvv', 10)
+
+    redisConn.lpush("laaa","-----")
+    redisConn.lpush("laaa", "2222")
+    l = redisConn.lrange("laaa",0,-1)
+    for i in l :
+        print(i)
+    redisConn.delete("laaa")
+
+
